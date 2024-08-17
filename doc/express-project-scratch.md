@@ -29,13 +29,6 @@ npm i -D @types/cors
 ```
 npm i body-parser
 ```
-- bcrypt
-```
-npm i bcrypt
-```
-```
-npm i -D @types/bcrypt
-```
 ```
 npm i jsonwebtoken
 ```
