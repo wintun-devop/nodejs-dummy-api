@@ -1,10 +1,9 @@
 import { prisma } from "../utils/prismaSingletone";
-import type { Product as _Product } from '@prisma/client';
-export type Product = _Product;
+import type {Product} from '@prisma/client';
 
 export namespace ProductRepo{
     // create
-    export const create = async (product:any) =>{
+    export const create = async (product:Product) =>{
       return await prisma.product.create({
       data: {
           ...product,
@@ -12,7 +11,7 @@ export namespace ProductRepo{
       });
     }
     // update
-    export const update= async (id: string, product: any)=> {
+    export const update= async (id: string, product: Product)=> {
     // console.log(id, product);
     return await prisma.product.update({
         where: {
@@ -56,7 +55,7 @@ export namespace ProductRepo{
     export const deleteInsertProduct = async (data:any[]) => {
       return prisma.$transaction([
         prisma.product.deleteMany({}),
-        prisma.product.createMany({data})
+        prisma.product.createMany({data}),
       ])
     };
 
