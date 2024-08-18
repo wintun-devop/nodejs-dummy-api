@@ -65,4 +65,4 @@ oneProductRoute.delete("/:id",async (req:Request, res:Response) => {
         console.log("error",e);
         res.status(500).json({"message":"Internal server error!"})
     }
-})
+});
