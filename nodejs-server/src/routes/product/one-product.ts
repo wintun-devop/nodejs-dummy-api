@@ -63,7 +63,7 @@ oneProductRoute.delete("/:id",async (req:Request, res:Response) => {
             const result = await ProductRepo.remove(id)
             res.status(200).json({"message":"success",result:result});
         }else{
-            res.status(400).json({"message":"Not Found or Already deleted!"})
+            res.status(404).json({"message":"Not Found or Already deleted!"})
         } 
     }catch(e){
         console.log("error",e);
