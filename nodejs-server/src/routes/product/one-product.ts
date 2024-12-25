@@ -1,19 +1,23 @@
-import { Router,Request, Response } from 'express';
+import express,{ Router,Request, Response } from 'express';
 import { ProductRepo } from '../../repositories/product-repo';
 
 // declare route
 export const oneProductRoute = Router();
 
 // Create(C)
-oneProductRoute.post("/",async (req:Request,res:Response) => {
+oneProductRoute.post("/",async (req:Request,res:Response):Promise<any> => {
     try {
         const reqBody = req.body
         const result = await ProductRepo.create(reqBody)
-        return res.status(201).json({"message":"success",result:result});
-    } catch (e) {
-        return res.status(500).json({"message":"Internal server error!"})
+        return res.status(201).json({status:"success","message":"success",result:result});
+    } catch (e:any) {
+        console.log("prisma",e)
+        if(e.code == 'P2002'){
+            return res.status(400).json({status:"error",message:"Unique Constrain!"})
+        }
+        return res.status(500).json({status:"error",message:"Internal server error!"})
     }
-})
+});
 
 // Read One Prodct by Id(R)
 oneProductRoute.get('/:id',async (req:Request,res:Response) => {
@@ -59,7 +63,7 @@ oneProductRoute.delete("/:id",async (req:Request, res:Response) => {
             const result = await ProductRepo.remove(id)
             res.status(200).json({"message":"success",result:result});
         }else{
-            res.status(400).json({"message":"Not Found or Already deleted!"})
+            res.status(404).json({"message":"Not Found or Already deleted!"})
         } 
     }catch(e){
         console.log("error",e);

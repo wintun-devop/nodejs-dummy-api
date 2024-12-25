@@ -35,3 +35,6 @@ npm i jsonwebtoken
 ```
 npm i -D@types/jsonwebtoken
 ```
+```
+npm i uuid
+```
