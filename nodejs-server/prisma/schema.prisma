@@ -13,13 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  username    String    @unique
+  password    String    
+  profile     String?   @default("url.png")
+  permission  String    @default("user")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
 
 model Product {
-  id         String    @id @default(cuid())
-  name       String
-  model      String    @unique
-  productUrl String?   @default("url.png")
-  Remark     String?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime?
+  id            String    @id @default(cuid())
+  name          String
+  model         String    @unique
+  productUrl    String?   @default("url.png")
+  Remark        String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
