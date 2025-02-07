@@ -38,3 +38,12 @@ npm i -D@types/jsonwebtoken
 ```
 npm i uuid
 ```
+```
+npm i -D @types/uuid
+```
+```
+npm i bcrypt
+```
+```
+npm i -D @types/bcrypt
+```
